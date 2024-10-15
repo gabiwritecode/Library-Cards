@@ -10,10 +10,30 @@
   <body>
     <div class="container">
       <div class="card">
-        <img src="" alt="" />
-        <div class="book-name"></div>
-        <div class="book-pages">456</div>
+        <img src="harry potter1.webp" alt="book-cover" class="book-cover" />
+        <div class="name">Harry Potter</div>
+        <div class="pages">456</div>
+        <div class="author">J.K. Rowling</div>
+        <div class="button-container">
+          <button class="edit-button">Edit</button>
+          <button class="delete-button">Delete</button>
+        </div>
       </div>
     </div>
+    <dialog id="bookDialog">
+      <form action="submit" method="dialog">
+        <div class="modal-header">上傳書籍內容</div>
+        <div class="modal-body">
+          <input type="file" id="bookImage" accept="image/*" />
+          <input type="text" id="bookName" placeholder="書名" />
+          <input type="text" id="bookAuthor" placeholder="作者" />
+          <input type="pages" id="bookPages" placeholder="頁數" />
+        </div>
+        <div class="modal-footer">
+          <button type="reset">取消</button>
+          <button id="submitButton">提交</button>
+        </div>
+      </form>
+    </dialog>
   </body>
 </html>
