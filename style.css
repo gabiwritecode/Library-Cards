@@ -1,0 +1,49 @@
+p,
+div,
+button {
+  font-family: Arial, Helvetica, sans-serif;
+}
+.add-book-button-container {
+  display: block;
+  text-align: center;
+}
+.add-book-button {
+  display: inline-block;
+  border: solid;
+  border-width: 1px;
+  border-color: lightblue;
+  background-color: white;
+  color: lightblue;
+  padding: 7px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: backgroundcolor 0.3s, color 0.3s;
+}
+
+.add-book-button:hover {
+  background-color: lightblue;
+  color: white;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border: solid;
+  border-color: red;
+  border-width: 2px;
+  margin-top: 30px;
+  padding: 10px 20px;
+}
+.book-cover {
+  width: 150px;
+  height: 200px;
+}
+.card {
+  margin-right: 8px;
+  margin-left: 8px;
+  background-color: aquamarine;
+}
+.card:active {
+  opacity: 0.6;
+}

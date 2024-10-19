@@ -5,19 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
     <title>Library Cards</title>
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
   </head>
   <body>
-    <div class="container">
-      <div class="card">
-        <img src="harry potter1.webp" alt="book-cover" class="book-cover" />
-        <div class="name">Harry Potter</div>
-        <div class="pages">456</div>
-        <div class="author">J.K. Rowling</div>
-        <div class="button-container">
-          <button class="edit-button">Edit</button>
-          <button class="delete-button">Delete</button>
-        </div>
+    <div class="add-book-button-container">
+      <button class="add-book-button">Add Book</button>
+    </div>
+    <div class="card-container">
+      
       </div>
     </div>
     <dialog id="bookDialog">
@@ -30,10 +25,22 @@
           <input type="pages" id="bookPages" placeholder="頁數" />
         </div>
         <div class="modal-footer">
-          <button type="reset">取消</button>
-          <button id="submitButton">提交</button>
+          <button type="reset" id="close-button">取消</button>
+          <button id="submit-button">提交</button>
         </div>
       </form>
     </dialog>
+    <template id="card-template">
+      <div class="card">
+          <img alt="book-cover" class="book-cover" />
+          <div class="name"></div>
+          <div class="pages"></div>
+          <div class="author"></div>
+          <div class="button-container">
+            <button class="edit-button">Edit</button>
+            <button class="delete-button">Delete</button>
+          </div>
+      </div>
+    </template>
   </body>
 </html>
