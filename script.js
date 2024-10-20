@@ -20,35 +20,47 @@ submitBtn.addEventListener("click", (e) => {
   const bookName = document.getElementById("bookName").value;
   const bookAuthor = document.getElementById("bookAuthor").value;
   const bookPages = document.getElementById("bookPages").value;
-
-  if (editingBookId) {
-    const bookIndex = books.findIndex((b) => b.id === editingBookId);
-    const newImageFile = image.files[0];
-    books[bookIndex] = {
-      id: editingBookId,
-      image: newImageFile
-        ? URL.createObjectURL(newImageFile)
-        : books[bookIndex].image,
-      bookName: bookName,
-      bookAuthor: bookAuthor,
-      bookPages: bookPages,
-    };
-  } else {
-    const imageURL = URL.createObjectURL(image.files[0]);
-    const newBook = {
-      id: Date.now(),
-      image: imageURL,
-      bookName: bookName,
-      bookAuthor: bookAuthor,
-      bookPages: bookPages,
-    };
-    books.push(newBook);
+  const file = image.files[0];
+  if (!file && !editingBookId) {
+    alert("請選擇圖片");
+    return;
   }
+  const reader = new FileReader();
 
-  console.log(books);
-  saveBooks();
-  renderBookCards();
-  bookDialog.close();
+  reader.onloadend = function () {
+    if (editingBookId) {
+      const bookIndex = books.findIndex((b) => b.id === editingBookId);
+      books[bookIndex] = {
+        id: editingBookId,
+        image: file ? reader.result : books[bookIndex].image,
+        bookName: bookName,
+        bookAuthor: bookAuthor,
+        bookPages: bookPages,
+      };
+    } else {
+      const imageURL = URL.createObjectURL(image.files[0]);
+      const newBook = {
+        id: Date.now(),
+        image: reader.result,
+        bookName: bookName,
+        bookAuthor: bookAuthor,
+        bookPages: bookPages,
+      };
+      books.push(newBook);
+    }
+    console.log(books);
+    saveBooks();
+    renderBookCards();
+    bookDialog.close();
+  };
+
+  if (file) {
+    reader.readAsDataURL(file);
+  } else {
+    saveBooks();
+    renderBookCards();
+    bookDialog.close();
+  }
 });
 function loadBooks() {
   const storedBooks = localStorage.getItem("books");
@@ -129,16 +141,19 @@ function initSortableList(e) {
   e.preventDefault();
   const draggingCard = document.querySelector(".dragging");
 
-  // Get all cards except the one being dragged
   let siblings = [...cardContainer.querySelectorAll(".card:not(.dragging)")];
 
-  // Find the next sibling based on horizontal positioning
   let nextSibling = siblings.find((sibling) => {
     return e.clientX <= sibling.offsetLeft + sibling.offsetWidth / 2;
   });
 
-  // Insert the dragged card before the nextSibling
-  cardContainer.insertBefore(draggingCard, nextSibling);
+  if (nextSibling) {
+    // 如果找到 nextSibling，插入到它前面
+    cardContainer.insertBefore(draggingCard, nextSibling);
+  } else {
+    // 如果没有找到 nextSibling，插入到容器的末尾
+    cardContainer.appendChild(draggingCard);
+  }
 }
 
 function enableDragForCards() {
