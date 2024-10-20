@@ -30,6 +30,10 @@ submitBtn.addEventListener("click", (e) => {
     alert("請選擇圖片");
     return;
   }
+  if (!bookName || !bookAuthor || !bookPages) {
+    alert("請填寫詳細書籍內容");
+    return;
+  }
   const reader = new FileReader();
 
   reader.onloadend = function () {
@@ -43,7 +47,6 @@ submitBtn.addEventListener("click", (e) => {
         bookPages: bookPages,
       };
     } else {
-      const imageURL = URL.createObjectURL(image.files[0]);
       const newBook = {
         id: Date.now(),
         image: reader.result,
@@ -62,6 +65,15 @@ submitBtn.addEventListener("click", (e) => {
   if (file) {
     reader.readAsDataURL(file);
   } else {
+    const bookIndex = books.findIndex((b) => b.id === editingBookId);
+    books[bookIndex] = {
+      id: editingBookId,
+      image: books[editingBookId].image,
+      bookName: bookName,
+      bookAuthor: bookAuthor,
+      bookPages: bookPages,
+    };
+    console.log(books);
     saveBooks();
     renderBookCards();
     bookDialog.close();
@@ -113,12 +125,11 @@ function editBook(id) {
   const bookNameInput = document.getElementById("bookName");
   const bookAuthorInput = document.getElementById("bookAuthor");
   const bookPagesInput = document.getElementById("bookPages");
-  const bookImageInput = document.getElementById("bookImage");
 
   bookNameInput.value = book.bookName;
   bookAuthorInput.value = book.bookAuthor;
   bookPagesInput.value = book.bookPages;
-  bookImageInput.value = "";
+
   bookDialog.showModal();
 }
 function resetForm() {
