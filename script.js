@@ -4,6 +4,11 @@ const closeBtn = bookDialog.querySelector("#close-button");
 const submitBtn = bookDialog.querySelector("#submit-button");
 const cardTemplate = document.querySelector("#card-template");
 const cardContainer = document.querySelector(".card-container");
+const cardWidth = 150;
+const gap = 8;
+const scrollAmount = cardWidth + gap;
+const rightArrow = document.querySelector(".fa-circle-right");
+const leftArrow = document.querySelector(".fa-circle-left");
 let books = [];
 let editingBookId = null;
 let draggedCard = null;
@@ -170,3 +175,28 @@ function enableDragForCards() {
 }
 
 enableDragForCards();
+// 滑動箭頭
+rightArrow.addEventListener("click", () => {
+  cardContainer.scrollBy({ left: scrollAmount, behavior: "smooth" });
+});
+leftArrow.addEventListener("click", () => {
+  cardContainer.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+});
+const updateArrowVisibility = () => {
+  const maxScrollLeft = cardContainer.scrollWidth - cardContainer.clientWidth;
+  if (cardContainer.scrollLeft > 0) {
+    leftArrow.style.opacity = "1";
+  } else {
+    leftArrow.style.opacity = "0";
+    leftArrow.style.cursor = "default";
+  }
+  if (cardContainer.scrollLeft < maxScrollLeft) {
+    rightArrow.style.opacity = "1";
+  } else {
+    rightArrow.style.opacity = "0";
+    rightArrow.style.cursor = "default";
+  }
+};
+cardContainer.addEventListener("scroll", updateArrowVisibility);
+
+updateArrowVisibility();

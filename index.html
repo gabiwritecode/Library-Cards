@@ -6,14 +6,21 @@
     <link rel="stylesheet" href="style.css" />
     <title>Library Cards</title>
     <script src="script.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
   </head>
   <body>
     <div class="add-book-button-container">
+     
       <button class="add-book-button">Add Book</button>
+  
     </div>
-    <div class="card-container">
-      
+    <div class="outline">
+      <i class="fa-regular fa-circle-left"></i>
+      <div class="card-container">
+       
       </div>
+      <i class="fa-regular fa-circle-right"></i>
+    </div>
     </div>
     <dialog id="bookDialog">
       <form action="submit" method="dialog">
@@ -32,14 +39,14 @@
     </dialog>
     <template id="card-template">
       <div class="card">
-          <img alt="book-cover" class="book-cover" />
-          <div class="name"></div>
-          <div class="pages"></div>
-          <div class="author"></div>
-          <div class="button-container">
-            <button class="edit-button">Edit</button>
-            <button class="delete-button">Delete</button>
-          </div>
+        <img alt="book-cover" class="book-cover" />
+        <div class="name"></div>
+        <div class="pages"></div>
+        <div class="author"></div>
+        <div class="button-container">
+          <button class="edit-button">Edit</button>
+          <button class="delete-button">Delete</button>
+        </div>
       </div>
     </template>
   </body>
