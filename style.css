@@ -106,3 +106,66 @@ button:hover {
   background-color: rgba(208, 137, 102, 0.5);
   border-radius: 3px;
 }
+dialog {
+  width: 800px;
+  height: 200px;
+  border-width: 1px;
+  border-color: rgba(208, 137, 102, 0.5);
+  border-style: solid;
+
+  color: rgb(208, 137, 102);
+}
+dialog form {
+  display: flex;
+
+  align-items: center;
+}
+
+dialog .modal-header {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+dialog #bookImage {
+  padding-left: 30px;
+  padding-right: 0;
+}
+dialog button {
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+dialog #bookName,
+#bookAuthor,
+#bookPages {
+  color: rgb(208, 137, 102);
+  border-color: rgb(208, 137, 102);
+  border-style: solid;
+  border-width: 1px;
+  height: 18px;
+}
+dialog ::placeholder {
+  color: rgb(208, 137, 102);
+}
+::file-selector-button {
+  display: inline-block;
+  border: solid;
+  border-width: 1px;
+  border-color: rgb(208, 137, 102);
+  background-color: white;
+  color: rgb(208, 137, 102);
+  padding: 7px 14px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  margin-right: 10px;
+  margin-left: 20px;
+
+  cursor: pointer;
+  transition: backgroundcolor 0.3s, color 0.3s;
+}
+::file-selector-button:hover {
+  background-color: rgb(208, 137, 102);
+  color: white;
+}

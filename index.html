@@ -22,19 +22,26 @@
       <i class="fa-regular fa-circle-right"></i>
     </div>
     </div>
+
     <dialog id="bookDialog">
       <form action="submit" method="dialog">
-        <div class="modal-header">上傳書籍內容</div>
+        <div></div>
+        <div class="modal-header"><h2>上傳書籍內容</h2>
+   
+            <input type="file" id="bookImage" accept="image/*" />
+
+          <div class="modal-button">
+            <button type="reset" id="close-button">取消</button>
+            <button id="submit-button">提交</button>
+          </div>
+        </div>
         <div class="modal-body">
-          <input type="file" id="bookImage" accept="image/*" />
+          
           <input type="text" id="bookName" placeholder="書名" />
           <input type="text" id="bookAuthor" placeholder="作者" />
           <input type="pages" id="bookPages" placeholder="頁數" />
         </div>
-        <div class="modal-footer">
-          <button type="reset" id="close-button">取消</button>
-          <button id="submit-button">提交</button>
-        </div>
+      
       </form>
     </dialog>
     <template id="card-template">

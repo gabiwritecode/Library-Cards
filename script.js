@@ -9,6 +9,7 @@ const gap = 8;
 const scrollAmount = cardWidth + gap;
 const rightArrow = document.querySelector(".fa-circle-right");
 const leftArrow = document.querySelector(".fa-circle-left");
+
 let books = [];
 let editingBookId = null;
 let draggedCard = null;
@@ -209,5 +210,9 @@ const updateArrowVisibility = () => {
   }
 };
 cardContainer.addEventListener("scroll", updateArrowVisibility);
-
+bookDialog.addEventListener("click", (e) => {
+  if (e.target === bookDialog) {
+    bookDialog.close();
+  }
+});
 updateArrowVisibility();
